@@ -4,7 +4,7 @@ import './nodes.css'; // Ensure this path is correct
 
 export const NodeComponent = ({
   id,
-  nodeType,
+  nodeType = '', // Default to an empty string if not provided
   inputFields,
   outputFields,
   targetHandles = 0,
@@ -54,9 +54,9 @@ export const NodeComponent = ({
   };
 
   return (
-    <div className={`node ${nodeType}`} ref={nodeRef}>
+    <div className={`node ${nodeType}`}>
       <div className="node-header">
-        <span>{nodeType.charAt(0).toUpperCase() + nodeType.slice(1)}</span>
+        <span>{nodeType ? nodeType.charAt(0).toUpperCase() + nodeType.slice(1) : 'Unknown'}</span>
         {onClose && (
           <button className="node-close-button" onClick={() => onClose(id)}>
             &times;
@@ -70,7 +70,7 @@ export const NodeComponent = ({
             <textarea
               className="node-input large-textarea"
               placeholder={field.placeholder}
-              rows="10" // Adjust rows as needed
+              rows="7"
               style={{ width: '100%', padding: '10px' }}
             />
           ) : field.type === 'select' ? (

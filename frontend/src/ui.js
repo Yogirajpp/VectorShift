@@ -6,25 +6,31 @@ import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
-import { InputNode } from './nodes/inputNode';
-import { FileNode } from './nodes/fileNode';
-import { OutputNode } from './nodes/outputNode';
-import { TextNode } from './nodes/textNode';
-import { IntegrationNode } from './nodes/integrationNode';
 
 import 'reactflow/dist/style.css';
-import { OpenAiNode } from './nodes/openAiNode';
+import { NodeComponent } from './components/nodeComponent';
+import { nodeConfig } from './nodes/nodeConfig';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
-const nodeTypes = {
-  customInput: InputNode,
-  file: FileNode,
-  customOutput: OutputNode,
-  text: TextNode,
-  integration: IntegrationNode,
-  openAi: OpenAiNode
-};
+
+// Create nodeTypes dynamically based on nodeConfig
+const nodeTypes = Object.keys(nodeConfig).reduce((acc, key) => {
+  acc[key] = ({ id, data }) => (
+    <NodeComponent
+      id={id}
+      data={data}
+      nodeType={nodeConfig[key].nodeType}
+      inputFields={nodeConfig[key].inputFields}
+      outputFields={nodeConfig[key].outputFields}
+      targetHandles={nodeConfig[key].targetHandleNames.length}
+      sourceHandles={nodeConfig[key].sourceHandleNames.length}
+      targetHandleNames={nodeConfig[key].targetHandleNames}
+      sourceHandleNames={nodeConfig[key].sourceHandleNames}
+    />
+  );
+  return acc;
+}, {});
 
 const selector = (state) => ({
   nodes: state.nodes,
@@ -104,7 +110,7 @@ export const PipelineUI = () => {
                 onDrop={onDrop}
                 onDragOver={onDragOver}
                 onInit={setReactFlowInstance}
-                nodeTypes={nodeTypes}
+                nodeTypes={nodeTypes} // Use dynamic nodeTypes
                 proOptions={proOptions}
                 snapGrid={[gridSize, gridSize]}
                 connectionLineType='smoothstep'

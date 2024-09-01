@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useStore } from './store'; // Import the Zustand store
 import PipelineResult from './piplineResult';
+import "./submit.css";
 
 export const SubmitButton = () => {
     const nodes = useStore((state) => state.nodes);  // Get nodes from the store
@@ -34,10 +35,10 @@ export const SubmitButton = () => {
 
     return (
         <div>
-            <button onClick={() => handleSubmit(nodes, edges)}>
+            <button className="submit-button" onClick={() => handleSubmit(nodes, edges)}>
                 Submit Pipeline
             </button>
-            {result && <PipelineResult result={result} />} {/* Render the result if available */}
+            {result && <PipelineResult result={result} />}
         </div>
     );
 };

@@ -71,14 +71,15 @@
 
 /* Handle positioning */
 .react-flow__handle {
-    background: #007bff;
-    border: 2px solid #007bff;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
+    background: transparent; /* Make background transparent */
+    border: 2px solid #000000; /* Set border color */
+    border-radius: 50%; /* Make it circular */
+    width: 5px;
+    height: 5px;
     cursor: pointer;
     position: absolute;
 }
+
 
 /* Target handle on the left side */
 .react-flow__handle.target {

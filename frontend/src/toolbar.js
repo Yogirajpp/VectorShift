@@ -8,7 +8,7 @@ export const PipelineToolbar = () => {
         <div style={{ padding: '10px' }}>
             <div style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                 <DraggableNode 
-                    type='customInput' 
+                    type='input' 
                     label='Input' 
                     icon={<FontAwesomeIcon icon={faBoxes} />} 
                 />
@@ -18,7 +18,7 @@ export const PipelineToolbar = () => {
                     icon={<FontAwesomeIcon icon={faFile} />} 
                 />
                 <DraggableNode 
-                    type='customOutput' 
+                    type='output' 
                     label='Output' 
                     icon={<FontAwesomeIcon icon={faUpload} />} 
                 />

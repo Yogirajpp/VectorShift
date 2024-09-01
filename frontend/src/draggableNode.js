@@ -15,21 +15,21 @@ export const DraggableNode = ({ type, label, icon }) => {
             onDragEnd={(event) => (event.target.style.cursor = 'grab')}
             style={{ 
                 cursor: 'grab', 
-                minWidth: '80px', 
-                height: '80px', // Adjusted height to fit the icon
+                minWidth: '60px', 
+                height: '60px',
                 display: 'flex', 
                 alignItems: 'center', 
                 justifyContent: 'center', 
                 flexDirection: 'column',
                 borderRadius: '8px',
                 backgroundColor: '#1C2536',
-                padding: '10px', // Added padding for better spacing
-                color: '#fff' // Text color
+                padding: '10px', 
+                color: '#fff'
             }}
             draggable
         >
             <div style={{ marginBottom: '5px' }}>
-                {icon} {/* Render the icon */}
+                {icon}
             </div>
             <span>{label}</span>
         </div>
