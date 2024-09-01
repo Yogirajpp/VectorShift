@@ -10,7 +10,8 @@ export const TextNode = ({ id, data }) => {
       data={data}
       nodeType="text"
       inputFields={[
-        { name: 'textInput', placeholder: 'Enter text...', type: 'text' },
+        { name: 'inputName', placeholder: 'Name', type: 'select', options: ['Text', 'Prompt'], },
+        { name: 'textInput', placeholder: 'Enter text...', type: 'largeTextArea' },
       ]}
       outputFields={['text']}
       targetHandles={targetHandleNames.length}

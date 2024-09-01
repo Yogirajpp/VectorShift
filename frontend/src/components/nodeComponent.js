@@ -66,7 +66,14 @@ export const NodeComponent = ({
 
       {inputFields.map((field) => (
         <div key={field.name} className="input">
-          {field.type === 'select' ? (
+          {field.type === 'largeTextArea' ? (
+            <textarea
+              className="node-input large-textarea"
+              placeholder={field.placeholder}
+              rows="10" // Adjust rows as needed
+              style={{ width: '100%', padding: '10px' }}
+            />
+          ) : field.type === 'select' ? (
             <select className="node-input">
               {field.options.map((option) => (
                 <option key={option} value={option}>
